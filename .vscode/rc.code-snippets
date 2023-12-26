@@ -1,0 +1,27 @@
+{
+	"react component": {
+		"prefix": "rc",
+		"body": [
+			"/* eslint-disable i18next/no-literal-string */"
+			"import { memo } from 'react';",
+			"import { useTranslation } from 'react-i18next';",
+      "import { classNames } from 'shared/lib/classNames/classNames';",
+      "import styles from './${1:$TM_FILENAME_BASE}.module.scss';",
+			" ",
+			"interface ${1:$TM_FILENAME_BASE}Props {",
+			  "  className?: string;",
+			"};",
+			" ",
+      "export const ${1:$TM_FILENAME_BASE} = memo(({ className }: ${1:$TM_FILENAME_BASE}Props) => {",
+			"    const { t } = useTranslation();",
+			"    return (",
+			"      <div className={classNames(styles.${1:$TM_FILENAME_BASE}, {}, [className])}>",
+							"${1:$TM_FILENAME_BASE}",
+						"</div>",
+			"     );",
+			"  });",
+		],
+		"description": "For react component start describe"
+	}
+}
+

@@ -1,0 +1,26 @@
+.Graph {
+  margin: 20px;
+}
+
+.months {
+  display: flex;
+  padding-left: 30px;
+}
+
+.container {
+  display: flex;
+  width: 898px;
+}
+
+.weekdays {
+  display: inline-flex;
+  flex-direction: column;
+  width: 30px;
+}
+
+.cells{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-left: 5px;
+}

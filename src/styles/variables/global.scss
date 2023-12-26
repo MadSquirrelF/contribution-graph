@@ -1,0 +1,12 @@
+:root {
+  --font-family-main: inter, avenir, helvetica, arial, sans-serif;
+  --font-size: 12px;
+  --font-line: 15px;
+  --font: var(--font-line) / var(--font-line) var(--font-family-main);
+  --bg-cell-default: #EDEDED;
+  --text-color: #959494;
+
+  // z - Индексы
+  --modal-z-index: 10;
+  --collapsed-btn-z-index: 9;
+}
