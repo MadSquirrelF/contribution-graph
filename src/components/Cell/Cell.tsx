@@ -4,10 +4,38 @@ import { classNames } from '../../lib/classNames/classNames';
 
 interface CellProps {
   className?: string;
-  contributionsCount?: number;
+  contributionsCount: number;
   date?: string;
 }
 
-export const Cell = memo(({ className, contributionsCount, date }: CellProps) => (
-    <div className={classNames(styles.Cell, {}, [className])} />
-));
+export const Cell = memo((props: CellProps) => {
+    const { className, contributionsCount, date } = props;
+
+    const mods: Record<string, boolean> = {
+        [styles.empty]: contributionsCount === 0,
+        [styles.firstStage]: contributionsCount > 0 && contributionsCount <= 9,
+        [styles.secondStage]: contributionsCount > 9 && contributionsCount <= 19,
+        [styles.thirdStage]: contributionsCount > 19 && contributionsCount <= 29,
+        [styles.finalStage]: contributionsCount > 29,
+    };
+
+    return (
+        <div className={styles.Cell}>
+            <div className={styles.notification}>
+                {
+                    contributionsCount > 0 ? (
+                        <span>
+                            {contributionsCount}
+                            {' '}
+                            contributions
+                        </span>
+                    ) : (<span>No contributions</span>)
+                }
+
+                <p>Четверг, Ноябрь 28, 2022</p>
+            </div>
+
+            <div className={classNames(styles.box, mods, [className])} />
+        </div>
+    );
+});

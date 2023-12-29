@@ -19,8 +19,9 @@
 }
 
 .cells{
-  display: flex;
-  flex-wrap: wrap;
+  display: inline-flex;
+  flex-flow: column wrap;
+  height: 117px;
   gap: 2px;
   margin-left: 5px;
 }

@@ -1,34 +1,21 @@
 /* eslint-disable react/no-array-index-key */
-import { memo, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { memo } from 'react';
+
 import { classNames } from '../../lib/classNames/classNames';
 import styles from './Graph.module.scss';
 import { Cell } from '../Cell/Cell';
-import { useAppDispatch } from '../../Redux/store';
-import { fetchDates } from '../../Redux/date/asyncActions';
-import { selectDateData } from '../../Redux/date/selectors';
 
 interface GraphProps {
   className?: string;
+  range?: any[];
+  data?: any[]
 }
 
-export const Graph = memo(({ className }: GraphProps) => {
-    const cells = Array.from(new Array(3));
-    const dispatch = useAppDispatch();
-
-    const { dates, status } = useSelector(selectDateData);
-
-    const getDates = async () => {
-        dispatch(
-            fetchDates(),
-        );
-    };
-
-    getDates();
+export const Graph = memo(({ className, range, data }: GraphProps) => {
+    const cells = Array.from(new Array(357));
 
     return (
         <div className={classNames(styles.Graph, {}, [className])}>
-
             <div className={styles.months}>
                 Окт Ноя Дек
             </div>
@@ -40,7 +27,7 @@ export const Graph = memo(({ className }: GraphProps) => {
 
                 <div className={styles.cells}>
                     {cells.map((_item, index) => (
-                        <Cell key={index} />
+                        <Cell key={index} contributionsCount={index} />
                     ))}
                 </div>
             </div>

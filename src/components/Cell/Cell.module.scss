@@ -1,7 +1,82 @@
-.Cell {
+.notification {
+display: none;
+  position: absolute;
+  top: -50px;
+  width: 145px;
+  height: 42px;
+  background-color: black;
+  border-radius: 10px;
+  left: -59px;
+  z-index: 2;
+  padding: 9px 6px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    right: 50%;
+    background-color: black;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+}
+
+  span {
+    margin-right: 1px;
+    color: white;
+    font-size: 12px;
+  }
+
+  p {
+    font-size: 10px;
+  }
+}
+
+.box{
   height: 15px;
   width: 15px;
   background-color: var(--bg-cell-default);
+}
+
+.Cell {
+  position: relative;
+
+  &:hover {
+    .notification {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+    }
+
+    .box{
+      outline: 1px solid black;
+      cursor: pointer;
+    }
+  }
+}
 
 
+
+
+
+.empty {
+  background-color: var(--bg-cell-default);
+}
+
+.firstStage {
+  background-color: var(--bg-cell-first);
+}
+
+.secondStage {
+  background-color: var(--bg-cell-second);
+}
+
+.thirdStage {
+  background-color: var(--bg-cell-third);
+}
+
+.finalStage {
+  background-color: var(--bg-cell-last);
 }
