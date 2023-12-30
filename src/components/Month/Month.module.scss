@@ -1,0 +1,31 @@
+.Month {
+  position: relative;
+} 
+
+.Jan,
+.Feb,
+.Mar,
+.Apr,
+.May,
+.Jun,
+.Jul,
+.Aug,
+.Sep,
+.Oct,
+.Nov,
+.Dec
+
+.Jan~.Jan,
+.Feb~.Feb,
+.Mar~.Mar,
+.Apr~.Apr,
+.May~.May,
+.Jun~.Jun,
+.Jul~.Jul,
+.Aug~.Aug,
+.Sep~.Sep,
+.Oct~.Oct,
+.Nov~.Nov,
+.Dec~.Dec {
+  display: none;
+}

@@ -1,11 +1,13 @@
 import { memo } from 'react';
+import { ru } from 'date-fns/locale/ru';
+import { format } from 'date-fns';
 import styles from './Cell.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 
 interface CellProps {
   className?: string;
   contributionsCount: number;
-  date?: string;
+  date: string;
 }
 
 export const Cell = memo((props: CellProps) => {
@@ -18,6 +20,10 @@ export const Cell = memo((props: CellProps) => {
         [styles.thirdStage]: contributionsCount > 19 && contributionsCount <= 29,
         [styles.finalStage]: contributionsCount > 29,
     };
+
+    const currentDate = format(date, "EEEE',' dd MMMM', 'yyyy", {
+        locale: ru,
+    });
 
     return (
         <div className={styles.Cell}>
@@ -32,7 +38,7 @@ export const Cell = memo((props: CellProps) => {
                     ) : (<span>No contributions</span>)
                 }
 
-                <p>Четверг, Ноябрь 28, 2022</p>
+                <p>{currentDate}</p>
             </div>
 
             <div className={classNames(styles.box, mods, [className])} />

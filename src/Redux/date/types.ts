@@ -9,6 +9,6 @@ export enum Status {
 }
 
 export interface DateSliceState {
-  dates : Dates[] ;
-  status: Status ;
+  dates: Dates;
+  status: Status;
 }

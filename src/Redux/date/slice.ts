@@ -3,7 +3,9 @@ import { DateSliceState, Status } from './types';
 import { fetchDates } from './asyncActions';
 
 const initialState: DateSliceState = {
-    dates: [],
+    dates: {
+        '': 0,
+    },
     status: Status.LOADING, // loading, success, error
 };
 
@@ -15,7 +17,9 @@ const dateSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchDates.pending, (state) => {
             state.status = Status.LOADING;
-            state.dates = [];
+            state.dates = {
+                '': 0,
+            };
         });
         builder.addCase(fetchDates.fulfilled, (state, action) => {
             state.dates = action.payload;
@@ -23,7 +27,9 @@ const dateSlice = createSlice({
         });
         builder.addCase(fetchDates.rejected, (state) => {
             state.status = Status.ERROR;
-            state.dates = [];
+            state.dates = {
+                '': 0,
+            };
         });
     },
 });
