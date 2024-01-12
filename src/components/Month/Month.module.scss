@@ -1,19 +1,8 @@
 .Month {
   position: relative;
+  text-transform: capitalize;
+  width: 15px;
 } 
-
-.Jan,
-.Feb,
-.Mar,
-.Apr,
-.May,
-.Jun,
-.Jul,
-.Aug,
-.Sep,
-.Oct,
-.Nov,
-.Dec
 
 .Jan~.Jan,
 .Feb~.Feb,
@@ -27,5 +16,5 @@
 .Oct~.Oct,
 .Nov~.Nov,
 .Dec~.Dec {
-  display: none;
+  opacity: 0;
 }

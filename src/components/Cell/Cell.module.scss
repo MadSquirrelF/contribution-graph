@@ -1,11 +1,11 @@
 .notification {
-display: none;
+  display: none;
   position: absolute;
   top: -50px;
-  width: 145px;
-  height: 42px;
+  min-width: 145px;
+  min-height: 42px;
   background-color: black;
-  border-radius: 10px;
+  border-radius: 3px;
   left: -59px;
   z-index: 2;
   padding: 9px 6px;
@@ -29,6 +29,7 @@ display: none;
 
   p {
     font-size: 10px;
+    text-transform: capitalize;
   }
 }
 

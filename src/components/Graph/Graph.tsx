@@ -16,14 +16,30 @@ interface GraphProps {
   className?: string;
 }
 
+let resultWeekDays: string[] = [];
+
 export const Graph = memo(({ className }: GraphProps) => {
     const dispatch = useAppDispatch();
 
     const startDate = format(sub(new Date(), {
-        days: 365,
+        days: 357,
     }), 'yyyy-MM-dd', {
         locale: ru,
     });
+
+    function populateDateArray(n = 7) {
+        const daysInAWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+
+        const returnValue = new Array(n);
+
+        let currentDay = (new Date().getDay());
+
+        for (let i = 0; i < n; i += 1) {
+            returnValue[i] = daysInAWeek[(currentDay += 1) % 7];
+        }
+
+        return returnValue;
+    }
 
     const { dates } = useSelector(selectDateData);
 
@@ -35,12 +51,14 @@ export const Graph = memo(({ className }: GraphProps) => {
 
     useEffect(() => {
         getDates();
+
+        resultWeekDays = populateDateArray();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const months = Array.from(new Array(Math.floor(365 / 7)));
+    const months = Array.from(new Array(Math.floor(357 / 7)));
 
-    const data = Array.from(new Array(365)).map((_, index) => {
+    const data = Array.from(new Array(358)).map((_, index) => {
         const dateEmpty = format(add(startDate, {
             days: index,
         }), 'yyyy-MM-dd', {
@@ -73,14 +91,34 @@ export const Graph = memo(({ className }: GraphProps) => {
 
             <div className={styles.container}>
                 <div className={styles.weekdays}>
-                    Пн Ср Пт
-                </div>
-
-                <div className={styles.cells}>
-                    {data.map((item, index) => (
-                        <Cell key={index} date={item.date} contributionsCount={item.value} />
+                    {resultWeekDays.map((item, index) => (
+                        <div className={styles.day} key={index}>{item}</div>
                     ))}
                 </div>
+
+                <div className={styles.wrapper}>
+                    <div className={styles.cells}>
+                        {data.map((item, index) => (
+                            <Cell key={index} date={item.date} contributionsCount={item.value} />
+                        ))}
+                    </div>
+
+                    <div className={styles.info}>
+
+                        <span>Меньше</span>
+
+                        <div className={styles.example}>
+                            <Cell contributionsCount={0} />
+                            <Cell contributionsCount={9} interval="1-9" />
+                            <Cell contributionsCount={19} interval="10-19" />
+                            <Cell contributionsCount={29} interval="20-29" />
+                            <Cell contributionsCount={30} interval="30+" />
+                        </div>
+
+                        <span>Больше</span>
+                    </div>
+                </div>
+
             </div>
 
         </div>

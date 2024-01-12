@@ -5,6 +5,34 @@
 .months {
   display: flex;
   padding-left: 30px;
+  align-items: center;
+  gap: 2px;
+}
+
+.day {
+  height: 15px;
+
+  &:nth-child(even) {
+    opacity: 0;
+  }
+}
+
+.info {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.example {
+  display: flex;
+  gap: 2px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
 }
 
 .container {
@@ -16,6 +44,7 @@
   display: inline-flex;
   flex-direction: column;
   width: 30px;
+  gap: 2px;
 }
 
 .cells{
@@ -23,5 +52,4 @@
   flex-flow: column wrap;
   height: 117px;
   gap: 2px;
-  margin-left: 5px;
 }

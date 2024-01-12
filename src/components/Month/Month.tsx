@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { format, add } from 'date-fns';
 import { ru } from 'date-fns/locale/ru';
-import clsx from 'clsx';
 import { classNames } from '../../lib/classNames/classNames';
 import styles from './Month.module.scss';
 

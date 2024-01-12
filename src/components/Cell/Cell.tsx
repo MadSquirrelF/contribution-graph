@@ -6,12 +6,15 @@ import { classNames } from '../../lib/classNames/classNames';
 
 interface CellProps {
   className?: string;
+  interval?: string;
   contributionsCount: number;
-  date: string;
+  date?: string;
 }
 
 export const Cell = memo((props: CellProps) => {
-    const { className, contributionsCount, date } = props;
+    const {
+        className, contributionsCount, date, interval,
+    } = props;
 
     const mods: Record<string, boolean> = {
         [styles.empty]: contributionsCount === 0,
@@ -21,9 +24,39 @@ export const Cell = memo((props: CellProps) => {
         [styles.finalStage]: contributionsCount > 29,
     };
 
-    const currentDate = format(date, "EEEE',' dd MMMM', 'yyyy", {
-        locale: ru,
-    });
+    if (date) {
+        const mods: Record<string, boolean> = {
+            [styles.empty]: contributionsCount === 0,
+            [styles.firstStage]: contributionsCount > 0 && contributionsCount <= 9,
+            [styles.secondStage]: contributionsCount > 9 && contributionsCount <= 19,
+            [styles.thirdStage]: contributionsCount > 19 && contributionsCount <= 29,
+            [styles.finalStage]: contributionsCount > 29,
+        };
+
+        const currentDate = format(date, "EEEE',' dd MMMM', 'yyyy", {
+            locale: ru,
+        });
+
+        return (
+            <div className={styles.Cell}>
+                <div className={styles.notification}>
+                    {
+                        contributionsCount > 0 ? (
+                            <span>
+                                {contributionsCount}
+                                {' '}
+                                contributions
+                            </span>
+                        ) : (<span>No contributions</span>)
+                    }
+
+                    <p>{currentDate}</p>
+                </div>
+
+                <div className={classNames(styles.box, mods, [className])} />
+            </div>
+        );
+    }
 
     return (
         <div className={styles.Cell}>
@@ -31,14 +64,12 @@ export const Cell = memo((props: CellProps) => {
                 {
                     contributionsCount > 0 ? (
                         <span>
-                            {contributionsCount}
+                            {interval}
                             {' '}
                             contributions
                         </span>
                     ) : (<span>No contributions</span>)
                 }
-
-                <p>{currentDate}</p>
             </div>
 
             <div className={classNames(styles.box, mods, [className])} />
